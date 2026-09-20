@@ -65,7 +65,7 @@ PDF build.
 ## Technology and structure
 
 ~~~text
-Phexora Aegis/
+PhexoraAegis/
 ├── index.html
 ├── assets/
 ├── papers/zkprivacy/
