@@ -82,7 +82,7 @@ name.
 - [Private-transaction STARK feasibility protocol](papers/zkprivacy/quantum-private-transaction-feasibility.md)
 - [T305 prior-art and reuse decision](papers/zkprivacy/decisions/t305-prior-art-decision.md)
 - [Decentralisation, operability, and security-budget decision](papers/zkprivacy/decisions/decentralisation-operability-security-budget-decision.md)
-- [Market and claim thesis](Documentation/Quantum_Market_Thesis.html)
+- [Market and claim thesis](Documentation/Phexora_Aegis_Market_Thesis.html)
 - [Static-site system architecture](Documentation/SystemArchitecture.html)
 
 The specification filename retains “v1” for link compatibility. The normative

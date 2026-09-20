@@ -95,6 +95,36 @@ jobs:
           bash -n start-local.sh
           node --check assets/js/site-i18n.js
 
+      - name: Validate public metadata and link targets
+        working-directory: PhexoraAegis
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq '<link rel="canonical" href="https://aegis.phexora.ai/">' index.html
+          grep -Fq 'property="og:url" content="https://aegis.phexora.ai/"' index.html
+          grep -Fq 'property="og:site_name" content="Phexora Aegis"' index.html
+          python3 - <<'PY'
+          import os, re, sys
+          missing = []
+          html = open('index.html', encoding='utf-8').read()
+          for attribute in ('href', 'src'):
+              for target in re.findall(rf'{attribute}="([^"]+)"', html):
+                  if target.startswith(('http://', 'https://', 'mailto:', '#', 'data:')):
+                      continue
+                  if not os.path.exists(target.split('#')[0]):
+                      missing.append(f'index.html -> {target}')
+          for markdown in ('README.md', 'AGENTS.md', 'CLAUDE.md'):
+              text = open(markdown, encoding='utf-8').read()
+              for target in re.findall(r'\]\(([^)\s]+)\)', text):
+                  if target.startswith(('http://', 'https://', 'mailto:', '#')):
+                      continue
+                  if not os.path.exists(target.split('#')[0]):
+                      missing.append(f'{markdown} -> {target}')
+          if missing:
+              print('\n'.join(missing))
+              sys.exit('Aegis links point at missing targets')
+          PY
+
       - name: Preserve released 0.5.4 publication artifacts
         working-directory: PhexoraAegis
         shell: bash

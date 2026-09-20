@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+**Public metadata and link integrity — 2026-09-20**
+
+- Added the canonical URL plus OpenGraph and Twitter card metadata to the
+  landing page so shared links resolve to `https://aegis.phexora.ai/` and the
+  preview reuses the existing DE/EN title and description keys.
+- Repaired the market-and-claim-thesis link in `README.md`, which still pointed
+  at the pre-Aegis `Documentation/Quantum_Market_Thesis.html` filename.
+- Extended the `aegis-identity` workflow with a metadata and link-target check
+  so a missing canonical tag or a dead local link fails CI.
+
 **Research revision 0.5.4 — 2026-09-05**
 
 - Advanced the specification and verification guide to 0.5.4-research and
