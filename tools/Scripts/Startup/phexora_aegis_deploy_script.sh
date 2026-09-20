@@ -248,7 +248,7 @@ echo "=== Deploying Phexora Aegis ==="
 AEGIS_OUTPUT_FILE="$(mktemp)"
 register_deploy_temp_file "$AEGIS_OUTPUT_FILE"
 bash "$SHARED_DEPLOY_SCRIPT" \
-    "Phexora Aegis" \
+    "PhexoraAegis" \
     "$SOURCE_BASE" \
     "$TARGET_DIR" \
     "$DEPLOY_TARGET" \
