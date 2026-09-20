@@ -1,4 +1,4 @@
-# Quantum - Release Notes
+# Phexora Aegis - Release Notes
 
 ## Unreleased
 
@@ -28,7 +28,7 @@
   necessary-only and consent actions, plus a footer settings control.
 **Consent-based static-site measurement**
 
-- Registered Quantum as its own SiteBuilder website analytics owner, restricted
+- Registered Phexora Aegis as its own SiteBuilder website analytics owner, restricted
   collection to the exact production origin, and linked aggregate reporting to
   BusinessPlanner.
 - Installed the SiteBuilder-generated opt-in runtime and assigned stable CTA
@@ -96,7 +96,7 @@
   multi-user, multi-target, and lifetime bound. Lower-entropy legacy imports
   remain explicitly degraded and do not inherit the full claim.
 - Separated generic proof-system accumulation capability in T306 from the exact
-  Quantum consensus/state relation in T505, made T405 a dependency for its
+  Phexora Aegis consensus/state relation in T505, made T405 a dependency for its
   policy-state semantics, and removed performance-threshold ownership from the
   T104 commitment-security decision.
 - Added governance-capture, client-distribution, and voluntary-social-adoption
@@ -153,7 +153,7 @@
   Design targets are presented as the target architecture, repeated research
   copy and duplicate legal navigation were removed, and the mobile layout was
   shortened.
-- Reframed public copy around Quantum's vision, design principles, and research
+- Reframed public copy around Phexora Aegis's vision, design principles, and research
   progress while retaining detailed uncertainty, prior-art, and stop/go
   analysis in the linked research documents.
 - Added consistent keyboard focus treatment, reduced-motion handling, and
@@ -170,9 +170,9 @@
   hidden port fallback, reject malformed or out-of-range explicit ports
   before PDF checks, bind only to <code>127.0.0.1</code>, and preserve startup
   failures. The Windows launcher now reports the same loopback URL it binds.
-- Aligned server publication with Quantum's registry-owned static-site
+- Aligned server publication with Phexora Aegis's registry-owned static-site
   boundary: the wrapper uses shared deployment helpers but stages only the
-  Quantum payload and no longer requires or deploys a Libraries payload.
+  Phexora Aegis payload and no longer requires or deploys a Libraries payload.
 - Server publication now receives one canonical bundle-staged shared-tooling
   directory, fails closed when non-interactive sudo is unavailable, verifies
   every web-root file/directory against the staged app, and emits the standard
@@ -205,20 +205,20 @@
 **Initial Release**
 
 - Created project structure for post-quantum cryptography research
-- Added Quantum specification:
+- Added Phexora Aegis specification:
   - `zkprivacy-quantum-spec-v1.md` - Full specification for privacy-preserving DAG blockchain
   - `zkprivacy-verification-guide.md` - AI implementation and verification guide
 - Landing page with paper listing
 - Responsive design with light academic theme
 
 **Papers Included:**
-- Quantum: Privacy-Preserving DAG Blockchain (Draft v1.0)
+- Phexora Aegis: Privacy-Preserving DAG Blockchain (Draft v1.0)
 
 ### v1.1.0 (2026-01-16)
 
 **Major Architecture Update: DAG-Native Design**
 
-- Renamed ZKPrivacy to Quantum
+- Renamed ZKPrivacy to Phexora Aegis
 - Adopted GhostDAG consensus as core architecture (1,000+ TPS target)
 - Added comprehensive documentation:
   - Abstract, Introduction, Design Philosophy sections
