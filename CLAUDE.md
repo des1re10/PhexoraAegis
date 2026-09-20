@@ -1,8 +1,8 @@
-# CLAUDE.md — Quantum
+# CLAUDE.md — Phexora Aegis
 
 ## Scope
 
-Quantum is a static documentation website and research-paper repository. It
+Phexora Aegis is a static documentation website and research-paper repository. It
 does not currently contain a blockchain, node, wallet, API, backend, database,
 or frontend framework.
 
@@ -46,7 +46,7 @@ separate later profiles and do not inherit base-protocol claims.
 | Operability, availability, producer, and security-budget decision | <code>papers/zkprivacy/decisions/decentralisation-operability-security-budget-decision.md</code> |
 | Future-paper scope and promotion gates | <code>papers/zkprivacy/templates/</code> |
 | Public research positioning | <code>index.html</code> and <code>README.md</code> |
-| Market/claim wording | <code>Documentation/Quantum_Market_Thesis.html</code> |
+| Market/claim wording | <code>Documentation/Phexora_Aegis_Market_Thesis.html</code> |
 | Actual static-site architecture | <code>Documentation/SystemArchitecture.html</code> |
 | Public site styles | <code>assets/css/style.css</code> |
 | Public DE/EN locale contract and language switching | <code>assets/js/site-i18n.js</code> |
@@ -65,7 +65,7 @@ PDF build.
 ## Technology and structure
 
 ~~~text
-Quantum/
+Phexora Aegis/
 ├── index.html
 ├── assets/
 ├── papers/zkprivacy/
@@ -81,15 +81,15 @@ Quantum/
 - Local preview: port 9180 through the repository start scripts.
 - PDF build: Markdown → DocWizard-Pro/Pandoc → PDF.
 - Deployment: <code>tools/Scripts/deploy_testing.bat</code> on Windows, then
-  <code>tools/Scripts/Startup/quantum_deploy_script.sh</code> on the server.
+  <code>tools/Scripts/Startup/phexora_aegis_deploy_script.sh</code> on the server.
 - Server deployment uses the shared script infrastructure as tooling but
-  publishes only Quantum; the registry marks this static site as a non-consumer
+  publishes only Phexora Aegis; the registry marks this static site as a non-consumer
   of the shared Libraries payload.
 - AppManager or the central orchestrator passes the exact bundle-staged
   `Libraries/Scripts` owner directory; manual runs use the canonical
   `~/AppManager/Libraries/Scripts` installation.
 - Missing sudo, missing startup tooling, or web-root content that differs from
-  the staged Quantum payload is a deployment failure.
+  the staged Phexora Aegis payload is a deployment failure.
 - Public web root: <code>index.html</code>, <code>LICENSE</code>,
   <code>assets/</code>, and <code>papers/</code>. <code>Documentation/</code> is not
   deployed publicly.
