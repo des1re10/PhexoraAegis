@@ -35,7 +35,7 @@ if [ -n "${SCRIPT_REAL_PATH:-}" ] && [ -f "$SCRIPT_REAL_PATH" ]; then
 else
     SCRIPT_DIR="$(cd -P "$(dirname "$SCRIPT_PATH")" >/dev/null 2>&1 && pwd)"
 fi
-QUANTUM_OUTPUT_FILE=""
+AEGIS_OUTPUT_FILE=""
 
 # Determine the system type
 SYSTEM=$(uname -s)
@@ -120,12 +120,12 @@ fi
 
 # Set paths based on deployment target
 if [ "$DEPLOY_TARGET" == "main" ]; then
-    TARGET_DIR="$HOME_BASE/Phexora Aegis/Phexora Aegis"
+    TARGET_DIR="$HOME_BASE/PhexoraAegis/PhexoraAegis"
     WEB_ROOT="/var/www/phexora-aegis"
     DOMAIN="aegis.phexora.ai"
     echo "Deploying to MAIN server: $WEB_ROOT"
 else
-    TARGET_DIR="$HOME_BASE/QuantumTest/Phexora Aegis"
+    TARGET_DIR="$HOME_BASE/PhexoraAegisTest/PhexoraAegis"
     WEB_ROOT="/var/www/phexora-aegis-test"
     DOMAIN="test.aegis.phexora.ai"
     echo "Deploying to TEST server: $WEB_ROOT"
@@ -245,18 +245,18 @@ echo "  Directories ready (including web root)"
 # === Deploy Phexora Aegis using shared script ===
 echo ""
 echo "=== Deploying Phexora Aegis ==="
-QUANTUM_OUTPUT_FILE="$(mktemp)"
-register_deploy_temp_file "$QUANTUM_OUTPUT_FILE"
+AEGIS_OUTPUT_FILE="$(mktemp)"
+register_deploy_temp_file "$AEGIS_OUTPUT_FILE"
 bash "$SHARED_DEPLOY_SCRIPT" \
     "Phexora Aegis" \
     "$SOURCE_BASE" \
     "$TARGET_DIR" \
     "$DEPLOY_TARGET" \
-    "n" 2>&1 | tee "$QUANTUM_OUTPUT_FILE"
-QUANTUM_OUTPUT=$(<"$QUANTUM_OUTPUT_FILE")
-rm -f "$QUANTUM_OUTPUT_FILE"
-unregister_deploy_temp_file "$QUANTUM_OUTPUT_FILE"
-QUANTUM_OUTPUT_FILE=""
+    "n" 2>&1 | tee "$AEGIS_OUTPUT_FILE"
+AEGIS_OUTPUT=$(<"$AEGIS_OUTPUT_FILE")
+rm -f "$AEGIS_OUTPUT_FILE"
+unregister_deploy_temp_file "$AEGIS_OUTPUT_FILE"
+AEGIS_OUTPUT_FILE=""
 
 echo "  Verifying deployed site files..."
 for required_path in "index.html" "assets" "papers" "LICENSE"; do
@@ -311,12 +311,12 @@ echo "  ✓ Web root deployment complete"
 MANIFEST_FILE="$TARGET_DIR/deployment_sync_manifest.json"
 validate_sync_manifest "$MANIFEST_FILE"
 
-read -r QUANTUM_ITEMS QUANTUM_FILES <<< "$(parse_deployment_counts "$QUANTUM_OUTPUT")"
+read -r AEGIS_ITEMS AEGIS_FILES <<< "$(parse_deployment_counts "$AEGIS_OUTPUT")"
 display_app_only_deployment_summary \
     "Phexora Aegis" \
-    "$QUANTUM_OUTPUT" \
-    "$QUANTUM_ITEMS" \
-    "$QUANTUM_FILES"
+    "$AEGIS_OUTPUT" \
+    "$AEGIS_ITEMS" \
+    "$AEGIS_FILES"
 
 # Cleanup source manifests
 if should_cleanup_source_manifests; then
@@ -382,7 +382,7 @@ echo "NEXT STEPS:"
 echo "=============="
 if [ "$DEPLOY_TARGET" == "test" ]; then
     echo "1. Verify test site at http://$DOMAIN"
-    echo "2. Check nginx logs: sudo tail -20 /var/log/nginx/quantum_error.log"
+    echo "2. Check nginx logs: sudo tail -20 /var/log/nginx/aegis_error.log"
 else
     echo "1. Verify site at https://$DOMAIN"
     echo "2. Check all papers load correctly"

@@ -35,15 +35,15 @@ TEST_WEB_ROOT="/var/www/phexora-aegis-test"
 if [ "$DEPLOY_TARGET" = "main" ]; then
     DOMAIN="$PRODUCTION_DOMAIN"
     NGINX_CONFIG_NAME="phexora-aegis.conf"
-    NGINX_SSL_SESSION_CACHE_NAME="QuantumTLS"
-    MAINTENANCE_PAGE="/var/www/html/maintenance_quantum.html"
-    MAINTENANCE_PAGE_FILENAME="maintenance_quantum.html"
+    NGINX_SSL_SESSION_CACHE_NAME="AegisTLS"
+    MAINTENANCE_PAGE="/var/www/html/maintenance_aegis.html"
+    MAINTENANCE_PAGE_FILENAME="maintenance_aegis.html"
 elif [ "$DEPLOY_TARGET" = "test" ]; then
     DOMAIN="test.aegis.phexora.ai"
     NGINX_CONFIG_NAME="phexora-aegis-test.conf"
-    NGINX_SSL_SESSION_CACHE_NAME="QuantumTestTLS"
-    MAINTENANCE_PAGE="/var/www/html/maintenance_quantum_test.html"
-    MAINTENANCE_PAGE_FILENAME="maintenance_quantum_test.html"
+    NGINX_SSL_SESSION_CACHE_NAME="AegisTestTLS"
+    MAINTENANCE_PAGE="/var/www/html/maintenance_aegis_test.html"
+    MAINTENANCE_PAGE_FILENAME="maintenance_aegis_test.html"
 else
     echo "FATAL: DEPLOY_TARGET must be main or test, got: $DEPLOY_TARGET"
     exit 1
@@ -200,7 +200,7 @@ if [ ! -f "$MAINTENANCE_PAGE" ]; then
 </head>
 <body>
     <div class="container">
-        <div class="logo">Q</div>
+        <div class="logo">A</div>
         <h1>Updating Documentation</h1>
         <p>The site is being updated with new research papers.</p>
         <p>Please check back in a moment.</p>
@@ -230,13 +230,13 @@ fi
 sed -i 's/\r$//' "$SSL_SETUP_SCRIPT" 2>/dev/null || true
 chmod +x "$SSL_SETUP_SCRIPT"
 
-QUANTUM_NGINX_EXTRA="$(mktemp)"
-cat > "$QUANTUM_NGINX_EXTRA" << EOF
+AEGIS_NGINX_EXTRA="$(mktemp)"
+cat > "$AEGIS_NGINX_EXTRA" << EOF
     # Static site logging
     root $WEB_ROOT;
     index index.html;
-    access_log /var/log/nginx/quantum_access.log;
-    error_log /var/log/nginx/quantum_error.log;
+    access_log /var/log/nginx/aegis_access.log;
+    error_log /var/log/nginx/aegis_error.log;
     add_header X-XSS-Protection "1; mode=block" always;
 
     # Cache static assets
@@ -271,12 +271,12 @@ if ! ALLOW_HTTP_ONLY_NGINX=1 \
     NGINX_ENABLE_STANDARD_API=0 \
     NGINX_ENABLE_STANDARD_WS=0 \
     NGINX_ENABLE_HEALTH_LOCATION=0 \
-    NGINX_EXTRA_SERVER_CONFIG_FILE="$QUANTUM_NGINX_EXTRA" \
+    NGINX_EXTRA_SERVER_CONFIG_FILE="$AEGIS_NGINX_EXTRA" \
     "$SSL_SETUP_SCRIPT" --skip-if-valid "${DOMAIN%%.phexora.ai}" phexora.ai 0 "$WEB_ROOT"; then
-    rm -f "$QUANTUM_NGINX_EXTRA"
+    rm -f "$AEGIS_NGINX_EXTRA"
     exit 1
 fi
-rm -f "$QUANTUM_NGINX_EXTRA"
+rm -f "$AEGIS_NGINX_EXTRA"
 
 cert_valid=false
 cert_status="missing"
@@ -374,13 +374,13 @@ fi
 
 echo ""
 echo "Logs:"
-echo "  Access: /var/log/nginx/quantum_access.log"
-echo "  Errors: /var/log/nginx/quantum_error.log"
+echo "  Access: /var/log/nginx/aegis_access.log"
+echo "  Errors: /var/log/nginx/aegis_error.log"
 echo ""
 echo "Troubleshooting:"
 echo "  - Test nginx: sudo nginx -t"
 echo "  - Check status: sudo systemctl status nginx"
-echo "  - View errors: sudo tail -20 /var/log/nginx/quantum_error.log"
+echo "  - View errors: sudo tail -20 /var/log/nginx/aegis_error.log"
 echo ""
 
 # Only wait in interactive mode
