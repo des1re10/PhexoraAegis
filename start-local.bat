@@ -1,5 +1,5 @@
 @echo off
-REM Quantum - Local Development Server (Windows)
+REM Phexora Aegis - Local Development Server (Windows)
 
 setlocal EnableExtensions EnableDelayedExpansion
 
@@ -25,18 +25,18 @@ if not defined PORT (
     if errorlevel 1 (
         type "!PORT_OUTPUT!"
         del "!PORT_OUTPUT!" 2>nul
-        echo FATAL: Failed to resolve the Quantum preview port from ApplicationRegistry.
+        echo FATAL: Failed to resolve the Phexora Aegis preview port from ApplicationRegistry.
         exit /b 1
     )
     set /p "PORT="<"!PORT_OUTPUT!"
     del "!PORT_OUTPUT!" 2>nul
 )
 if not defined PORT (
-    echo FATAL: Quantum preview port is empty.
+    echo FATAL: Phexora Aegis preview port is empty.
     exit /b 1
 )
 
-call "%STARTUP_WINDOWS_HELPER%" prepare-app-py3 "Quantum Preview" "%PROJECT_ROOT%" "%PORT%=module:http.server"
+call "%STARTUP_WINDOWS_HELPER%" prepare-app-py3 "Phexora Aegis Preview" "%PROJECT_ROOT%" "%PORT%=module:http.server"
 set "PORT_GUARD_EXIT=!ERRORLEVEL!"
 if "!PORT_GUARD_EXIT!"=="10" exit /b 0
 if not "!PORT_GUARD_EXIT!"=="0" exit /b 1
@@ -44,7 +44,7 @@ if not "!PORT_GUARD_EXIT!"=="0" exit /b 1
 pushd "%PROJECT_ROOT%"
 
 echo ================================================
-echo   Quantum - Post-Quantum Cryptography Research
+echo   Phexora Aegis - Post-Quantum Cryptography Research
 echo   Local Development Server
 echo ================================================
 echo.
