@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Quantum - PDF Build Script
+# Phexora Aegis - PDF Build Script
 # Converts active root-level Markdown papers to PDF using DocWizard-Pro
 #
 
@@ -13,20 +13,20 @@ DOCWIZARD_PYTHON="$DOCWIZARD_ROOT/.venv/bin/python"
 PAPERS_DIR="$SCRIPT_DIR/papers/zkprivacy"
 
 echo "================================================"
-echo "  Quantum - PDF Build Script"
+echo "  Phexora Aegis - PDF Build Script"
 echo "================================================"
 echo ""
 
 # Check if DocWizard-Pro exists
 if [ ! -f "$DOCWIZARD_SCRIPT" ]; then
     echo "ERROR: DocWizard-Pro not found at: $DOCWIZARD_SCRIPT"
-    echo "       Make sure DocWizard-Pro is in the same parent directory as Quantum"
+    echo "       Make sure DocWizard-Pro is in the same parent directory as Phexora Aegis"
     exit 1
 fi
 
 if [ ! -x "$DOCWIZARD_PYTHON" ]; then
     echo "ERROR: DocWizard-Pro Python runtime not found at: $DOCWIZARD_PYTHON"
-    echo "       Prepare the DocWizard-Pro .venv before building Quantum PDFs"
+    echo "       Prepare the DocWizard-Pro .venv before building Phexora Aegis PDFs"
     exit 1
 fi
 
