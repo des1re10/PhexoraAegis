@@ -4,8 +4,8 @@
 
 ## Repo overview
 - Repo: `Phexora Aegis`
-- App registry entries: quantum
-- quantum: Phexora Aegis - Post-Quantum Cryptography Research - static documentation site; domain aegis.phexora.ai; backend none (static site); frontend none; redis n/a; status none; enabled
+- App registry entries: aegis
+- aegis: Phexora Aegis - privacy, scalability and post-quantum security research - static documentation site; domain aegis.phexora.ai; backend none (static site); frontend none; redis n/a; status none; enabled
 - Registry source: `Libraries/Python/ApplicationRegistry.py` (ports, domains, scripts, Redis DBs)
 
 ## Quick start
