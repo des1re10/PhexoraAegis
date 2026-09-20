@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Quantum - Startup Script
+# Phexora Aegis - Startup Script
 # Sets up nginx, maintenance page, and SSL for static documentation website
 # Uses shared common_functions.sh library
 #
@@ -9,7 +9,7 @@
 # ============================================================================
 # PROJECT CONFIGURATION
 # ============================================================================
-PROJECT_NAME="Quantum"
+PROJECT_NAME="Phexora Aegis"
 
 # Resolve paths dynamically from script location
 # Use readlink -f to properly resolve symlinks (e.g., when run from ~/Desktop/Run scripts/)
@@ -29,18 +29,18 @@ fi
 
 # Determine deployment target from environment or default to main
 DEPLOY_TARGET="${DEPLOY_TARGET:-main}"
-PRODUCTION_DOMAIN="quantum.phexora.ai"
-TEST_WEB_ROOT="/var/www/quantum-test"
+PRODUCTION_DOMAIN="aegis.phexora.ai"
+TEST_WEB_ROOT="/var/www/phexora-aegis-test"
 
 if [ "$DEPLOY_TARGET" = "main" ]; then
     DOMAIN="$PRODUCTION_DOMAIN"
-    NGINX_CONFIG_NAME="quantum.conf"
+    NGINX_CONFIG_NAME="phexora-aegis.conf"
     NGINX_SSL_SESSION_CACHE_NAME="QuantumTLS"
     MAINTENANCE_PAGE="/var/www/html/maintenance_quantum.html"
     MAINTENANCE_PAGE_FILENAME="maintenance_quantum.html"
 elif [ "$DEPLOY_TARGET" = "test" ]; then
-    DOMAIN="test.quantum.phexora.ai"
-    NGINX_CONFIG_NAME="quantum-test.conf"
+    DOMAIN="test.aegis.phexora.ai"
+    NGINX_CONFIG_NAME="phexora-aegis-test.conf"
     NGINX_SSL_SESSION_CACHE_NAME="QuantumTestTLS"
     MAINTENANCE_PAGE="/var/www/html/maintenance_quantum_test.html"
     MAINTENANCE_PAGE_FILENAME="maintenance_quantum_test.html"
@@ -140,7 +140,7 @@ if [ ! -f "$MAINTENANCE_PAGE" ]; then
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum - Maintenance</title>
+    <title>Phexora Aegis - Maintenance</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {

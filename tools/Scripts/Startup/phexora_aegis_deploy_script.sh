@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # ============================================================================
-# Quantum - Server Deployment Script
+# Phexora Aegis - Server Deployment Script
 # ============================================================================
 # Deploys static documentation website from pCloud to web server
 # Uses shared deployment infrastructure for consistency with other projects
 #
-# Usage: ./quantum_deploy_script.sh
+# Usage: ./phexora_aegis_deploy_script.sh
 # ============================================================================
 
 # Fix own line endings first (handles Windows CRLF -> Unix LF)
@@ -48,12 +48,12 @@ if [[ "$SYSTEM" == "Linux" ]]; then
         exit 1
     else
         # Linux server - pCloud mounted
-        SOURCE_BASE="$HOME/pCloudDrive/Crypto Folder/Quantum Sources/Quantum"
+        SOURCE_BASE="$HOME/pCloudDrive/Crypto Folder/Phexora Aegis Sources/Phexora Aegis"
         HOME_BASE="$HOME"
     fi
 elif [[ "$SYSTEM" == "Darwin" ]]; then
     # Mac path
-    SOURCE_BASE="$HOME/pCloudDrive/Crypto Folder/Quantum Sources/Quantum"
+    SOURCE_BASE="$HOME/pCloudDrive/Crypto Folder/Phexora Aegis Sources/Phexora Aegis"
     HOME_BASE="$HOME"
 else
     echo "Unsupported system type: $SYSTEM"
@@ -65,7 +65,7 @@ if [ -n "${SOURCE_BASE_OVERRIDE:-}" ]; then
 fi
 
 echo "================================================"
-echo "  Quantum - Server Deployment"
+echo "  Phexora Aegis - Server Deployment"
 echo "================================================"
 echo ""
 echo "Source directory: $SOURCE_BASE"
@@ -120,14 +120,14 @@ fi
 
 # Set paths based on deployment target
 if [ "$DEPLOY_TARGET" == "main" ]; then
-    TARGET_DIR="$HOME_BASE/Quantum/Quantum"
-    WEB_ROOT="/var/www/quantum"
-    DOMAIN="quantum.phexora.ai"
+    TARGET_DIR="$HOME_BASE/Phexora Aegis/Phexora Aegis"
+    WEB_ROOT="/var/www/phexora-aegis"
+    DOMAIN="aegis.phexora.ai"
     echo "Deploying to MAIN server: $WEB_ROOT"
 else
-    TARGET_DIR="$HOME_BASE/QuantumTest/Quantum"
-    WEB_ROOT="/var/www/quantum-test"
-    DOMAIN="test.quantum.phexora.ai"
+    TARGET_DIR="$HOME_BASE/QuantumTest/Phexora Aegis"
+    WEB_ROOT="/var/www/phexora-aegis-test"
+    DOMAIN="test.aegis.phexora.ai"
     echo "Deploying to TEST server: $WEB_ROOT"
 fi
 
@@ -214,7 +214,7 @@ echo ""
 echo "=== Deployment Configuration ==="
 echo "Source: $SOURCE_BASE"
 echo "Target Project: $TARGET_DIR"
-echo "Shared Libraries payload: not applicable (Quantum is a static non-consumer)"
+echo "Shared Libraries payload: not applicable (Phexora Aegis is a static non-consumer)"
 echo "Web Root: $WEB_ROOT"
 echo "Domain: $DOMAIN"
 echo ""
@@ -242,13 +242,13 @@ mkdir -p "$TARGET_DIR" 2>/dev/null || true
 sudo mkdir -p "$WEB_ROOT"
 echo "  Directories ready (including web root)"
 
-# === Deploy Quantum using shared script ===
+# === Deploy Phexora Aegis using shared script ===
 echo ""
-echo "=== Deploying Quantum ==="
+echo "=== Deploying Phexora Aegis ==="
 QUANTUM_OUTPUT_FILE="$(mktemp)"
 register_deploy_temp_file "$QUANTUM_OUTPUT_FILE"
 bash "$SHARED_DEPLOY_SCRIPT" \
-    "Quantum" \
+    "Phexora Aegis" \
     "$SOURCE_BASE" \
     "$TARGET_DIR" \
     "$DEPLOY_TARGET" \
@@ -272,7 +272,7 @@ for markdown_file in "${PUBLIC_MARKDOWN_FILES[@]}"; do
     fi
 done
 
-# === Copy to web root (Quantum-specific: static website served by nginx) ===
+# === Copy to web root (Phexora Aegis-specific: static website served by nginx) ===
 echo ""
 echo "[2/5] Deploying to web root..."
 echo "  Deploying to web root: $WEB_ROOT"
@@ -313,7 +313,7 @@ validate_sync_manifest "$MANIFEST_FILE"
 
 read -r QUANTUM_ITEMS QUANTUM_FILES <<< "$(parse_deployment_counts "$QUANTUM_OUTPUT")"
 display_app_only_deployment_summary \
-    "Quantum" \
+    "Phexora Aegis" \
     "$QUANTUM_OUTPUT" \
     "$QUANTUM_ITEMS" \
     "$QUANTUM_FILES"
@@ -348,7 +348,7 @@ echo "  Deployed $WEB_FILE_COUNT files to $WEB_ROOT"
 
 # === Run startup script for nginx/SSL setup ===
 echo "[5/5] Running startup script for nginx configuration..."
-STARTUP_SCRIPT="$TARGET_DIR/tools/Scripts/Startup/run_quantum.sh"
+STARTUP_SCRIPT="$TARGET_DIR/tools/Scripts/Startup/run_phexora_aegis.sh"
 if [ ! -f "$STARTUP_SCRIPT" ]; then
     echo "ERROR: Required startup script not found: $STARTUP_SCRIPT"
     exit 1
