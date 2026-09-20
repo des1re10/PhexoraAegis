@@ -20,7 +20,7 @@ if [ -z "$PORT" ]; then
     PORT="$(PYTHONPATH="$LIBRARIES_PYTHON" python3 - <<'PY'
 from ApplicationRegistry import get_application
 
-config = get_application("quantum")
+config = get_application("aegis")
 if config is None:
     raise RuntimeError("Phexora Aegis is missing from ApplicationRegistry")
 if config.local_preview_port is None:
@@ -38,7 +38,7 @@ fi
 cd "$SCRIPT_DIR"
 
 echo "================================================"
-echo "  Phexora Aegis - Post-Quantum Cryptography Research"
+echo "  Phexora Aegis - Privacy, Scalability and Post-Quantum Security Research"
 echo "  Local Development Server"
 echo "================================================"
 echo ""

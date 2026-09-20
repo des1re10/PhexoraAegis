@@ -144,7 +144,7 @@ The checked-in website can be opened directly from a standalone clone without
 starting a runtime:
 
 ~~~bash
-git clone https://github.com/des1re10/Phexora-Aegis.git PhexoraAegis
+git clone https://github.com/des1re10/Quantum.git PhexoraAegis
 cd PhexoraAegis
 # Open index.html in a browser
 ~~~
@@ -161,7 +161,7 @@ The validated HTTP preview is a development-workspace command. From a complete
 <code>Libraries</code> repository, run:
 
 ~~~bash
-cd Phexora Aegis
+cd PhexoraAegis
 ./start-local.sh
 # Open http://127.0.0.1:9180
 ~~~

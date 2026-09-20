@@ -20,8 +20,8 @@ if errorlevel 1 (
 )
 
 if not defined PORT (
-    set "PORT_OUTPUT=%TEMP%\quantum_preview_port_!RANDOM!!RANDOM!.txt"
-    py -3 -c "import sys; sys.path.insert(0, r'%LIBRARIES_PYTHON%'); from ApplicationRegistry import get_application; config = get_application('quantum'); assert config is not None; print(config.local_preview_port)" > "!PORT_OUTPUT!" 2>&1
+    set "PORT_OUTPUT=%TEMP%\aegis_preview_port_!RANDOM!!RANDOM!.txt"
+    py -3 -c "import sys; sys.path.insert(0, r'%LIBRARIES_PYTHON%'); from ApplicationRegistry import get_application; config = get_application('aegis'); assert config is not None; print(config.local_preview_port)" > "!PORT_OUTPUT!" 2>&1
     if errorlevel 1 (
         type "!PORT_OUTPUT!"
         del "!PORT_OUTPUT!" 2>nul
@@ -44,7 +44,7 @@ if not "!PORT_GUARD_EXIT!"=="0" exit /b 1
 pushd "%PROJECT_ROOT%"
 
 echo ================================================
-echo   Phexora Aegis - Post-Quantum Cryptography Research
+echo   Phexora Aegis - Privacy, Scalability and Post-Quantum Security Research
 echo   Local Development Server
 echo ================================================
 echo.
