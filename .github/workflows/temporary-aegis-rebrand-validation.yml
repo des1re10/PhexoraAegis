@@ -43,7 +43,9 @@ jobs:
           test ! -e tools/Scripts/Startup/quantum_deploy_script.sh
           test ! -e Documentation/Quantum_Market_Thesis.html
           test -f Documentation/Phexora_Aegis_Market_Thesis.html
-          if git grep -In 'quantum\.phexora\.ai\|run_quantum\.sh\|quantum_deploy_script\.sh' -- README.md AGENTS.md CLAUDE.md Documentation assets tools start-local.sh start-local.bat build-pdfs.sh build-pdfs.bat; then
+          stale_matches="$(git grep -In 'quantum\.phexora\.ai\|run_quantum\.sh\|quantum_deploy_script\.sh' -- README.md AGENTS.md CLAUDE.md Documentation assets tools start-local.sh start-local.bat build-pdfs.sh build-pdfs.bat || true)"
+          if [[ -n "$stale_matches" ]]; then
+            printf '%s\n' "$stale_matches"
             echo 'Stale operational Quantum identity remains'
             exit 1
           fi
