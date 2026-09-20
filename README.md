@@ -1,13 +1,13 @@
-# Quantum
+# Phexora Aegis
 
 **Open post-quantum privacy and scalability research by Phexora AI**
 
-[![Website](https://img.shields.io/badge/Website-quantum.phexora.ai-6366f1)](https://quantum.phexora.ai)
+[![Website](https://img.shields.io/badge/Website-aegis.phexora.ai-6366f1)](https://aegis.phexora.ai)
 [![Research text: CC0 1.0](https://img.shields.io/badge/Research%20text-CC0--1.0-success)](LICENSE)
 
-## What Quantum is
+## What Phexora Aegis is
 
-Quantum is a research program for a private note-based DAG protocol. A
+Phexora Aegis is a research program for a private note-based DAG protocol. A
 releasable design must satisfy five requirements together:
 
 - **post-quantum security:** at least 128 bits of composed post-quantum security
@@ -134,8 +134,8 @@ The checked-in website can be opened directly from a standalone clone without
 starting a runtime:
 
 ~~~bash
-git clone https://github.com/des1re10/Quantum.git
-cd Quantum
+git clone https://github.com/des1re10/Phexora-Aegis.git
+cd Phexora Aegis
 # Open index.html in a browser
 ~~~
 
@@ -151,7 +151,7 @@ The validated HTTP preview is a development-workspace command. From a complete
 <code>Libraries</code> repository, run:
 
 ~~~bash
-cd Quantum
+cd Phexora Aegis
 ./start-local.sh
 # Open http://127.0.0.1:9180
 ~~~
