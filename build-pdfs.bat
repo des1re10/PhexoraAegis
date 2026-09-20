@@ -1,5 +1,5 @@
 @echo off
-REM Quantum - PDF Build Script (Windows)
+REM Phexora Aegis - PDF Build Script (Windows)
 REM Converts active root-level Markdown papers to PDF using DocWizard-Pro
 
 setlocal enabledelayedexpansion
@@ -11,20 +11,20 @@ set "DOCWIZARD_PYTHON=%DOCWIZARD_ROOT%\.venv\Scripts\python.exe"
 set "PAPERS_DIR=%SCRIPT_DIR%papers\zkprivacy"
 
 echo ================================================
-echo   Quantum - PDF Build Script
+echo   Phexora Aegis - PDF Build Script
 echo ================================================
 echo.
 
 REM Check if DocWizard-Pro exists
 if not exist "%DOCWIZARD_SCRIPT%" (
     echo ERROR: DocWizard-Pro not found at: %DOCWIZARD_SCRIPT%
-    echo        Make sure DocWizard-Pro is in the same parent directory as Quantum
+    echo        Make sure DocWizard-Pro is in the same parent directory as Phexora Aegis
     exit /b 1
 )
 
 if not exist "%DOCWIZARD_PYTHON%" (
     echo ERROR: DocWizard-Pro Python runtime not found at: %DOCWIZARD_PYTHON%
-    echo        Prepare the DocWizard-Pro .venv before building Quantum PDFs
+    echo        Prepare the DocWizard-Pro .venv before building Phexora Aegis PDFs
     exit /b 1
 )
 
