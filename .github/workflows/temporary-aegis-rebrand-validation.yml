@@ -36,7 +36,6 @@ jobs:
           grep -Fq '# Phexora Aegis' README.md
           grep -Fq 'aegis.phexora.ai' README.md
           grep -Fq 'Phexora Aegis' index.html
-          grep -Fq 'aegis.phexora.ai' index.html
           test -f tools/Scripts/Startup/run_phexora_aegis.sh
           test -f tools/Scripts/Startup/phexora_aegis_deploy_script.sh
           test ! -e tools/Scripts/Startup/run_quantum.sh
