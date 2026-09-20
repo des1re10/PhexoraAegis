@@ -144,7 +144,7 @@ The checked-in website can be opened directly from a standalone clone without
 starting a runtime:
 
 ~~~bash
-git clone https://github.com/des1re10/Quantum.git PhexoraAegis
+git clone https://github.com/des1re10/PhexoraAegis.git PhexoraAegis
 cd PhexoraAegis
 # Open index.html in a browser
 ~~~
