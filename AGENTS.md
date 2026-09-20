@@ -3,24 +3,24 @@
 > CRITICAL: Apply audit prompts from the `CRITICAL: Audit Prompt Compliance (Mandatory)` section before any code/review work.
 
 ## Repo overview
-- Repo: `Quantum`
+- Repo: `Phexora Aegis`
 - App registry entries: quantum
-- quantum: Quantum - Post-Quantum Cryptography Research - static documentation site; domain quantum.phexora.ai; backend none (static site); frontend none; redis n/a; status none; enabled
+- quantum: Phexora Aegis - Post-Quantum Cryptography Research - static documentation site; domain aegis.phexora.ai; backend none (static site); frontend none; redis n/a; status none; enabled
 - Registry source: `Libraries/Python/ApplicationRegistry.py` (ports, domains, scripts, Redis DBs)
 
 ## Quick start
 - Read: `README.md`, `CLAUDE.md`, `Documentation/`
-- Prefer startup scripts in `tools/Scripts/Startup`: `tools/Scripts/Startup/run_quantum.sh`
+- Prefer startup scripts in `tools/Scripts/Startup`: `tools/Scripts/Startup/run_phexora_aegis.sh`
 - Local start scripts in repo root: `start-local.bat`, `start-local.sh`
 
 ## Setup
 - No dependency manifests detected; treat as docs/assets unless README says otherwise
 
 ## Commands
-- Dev: `tools/Scripts/Startup/run_quantum.sh`, `start-local.bat`, `start-local.sh`
+- Dev: `tools/Scripts/Startup/run_phexora_aegis.sh`, `start-local.bat`, `start-local.sh`
 
 ## Notes
-- Deploy scripts: `tools/Scripts/Startup/quantum_deploy_script.sh`
+- Deploy scripts: `tools/Scripts/Startup/phexora_aegis_deploy_script.sh`
 
 ## Fail-Fast Policy (Mandatory)
 - For all Python changes, follow: `/mnt/d/workspace/VisualStudio/Libraries/Scripts/audit_prompts/03_defensive_programming_violations.md`.
