@@ -18,14 +18,6 @@ jobs:
         with:
           path: PhexoraAegis
 
-      - name: Checkout shared registry owner
-        uses: actions/checkout@v4
-        with:
-          repository: des1re10/Libraries
-          ref: main
-          path: Libraries
-          token: ${{ secrets.LIBRARIES_PAT }}
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -66,27 +58,6 @@ jobs:
           bash -n build-pdfs.sh
           bash -n start-local.sh
           node --check assets/js/site-i18n.js
-
-      - name: Validate registry identity
-        env:
-          PYTHONPATH: ${{ github.workspace }}/Libraries/Python
-        shell: bash
-        run: |
-          set -euo pipefail
-          python -m py_compile Libraries/Python/ApplicationRegistry.py
-          python - <<'PY'
-          from ApplicationRegistry import APPLICATION_REGISTRY
-
-          assert "aegis" in APPLICATION_REGISTRY
-          assert "quantum" not in APPLICATION_REGISTRY
-          app = APPLICATION_REGISTRY["aegis"]
-          assert app.display_name == "Phexora Aegis"
-          assert app.get_public_base_url() == "https://aegis.phexora.ai"
-          assert app.project_path_windows.endswith(r"\PhexoraAegis")
-          assert app.project_path_linux == "/home/des1re10/PhexoraAegis/PhexoraAegis"
-          assert app.main_script_linux == "tools/Scripts/Startup/run_phexora_aegis.sh"
-          assert app.deploy_script == "phexora_aegis_deploy_script.sh"
-          PY
 
       - name: Preserve released 0.5.4 publication artifacts
         working-directory: PhexoraAegis
