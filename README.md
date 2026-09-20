@@ -65,6 +65,16 @@ benchmark.
 The project must stop before production if any of the five core requirements
 cannot be demonstrated.
 
+## Publication identity
+
+Phexora Aegis is the current programme name. The already released 0.5.4-research
+paper set and its generated PDFs retain the historical project codename
+`Quantum` in filenames and publication text so the published revision remains
+reproducible. A future paper revision may adopt the Aegis publication name only
+together with regenerated PDFs, updated checksums, and the normal research
+review gates. The historical codename is not the current product or programme
+name.
+
 ## Research documents
 
 - [Research design specification](papers/zkprivacy/zkprivacy-quantum-spec-v1.md)
@@ -134,8 +144,8 @@ The checked-in website can be opened directly from a standalone clone without
 starting a runtime:
 
 ~~~bash
-git clone https://github.com/des1re10/Phexora-Aegis.git
-cd Phexora Aegis
+git clone https://github.com/des1re10/Phexora-Aegis.git PhexoraAegis
+cd PhexoraAegis
 # Open index.html in a browser
 ~~~
 
