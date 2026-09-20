@@ -3,7 +3,7 @@
 *Last Updated: August 2026*
 
 ```
-Phexora Aegis/
+PhexoraAegis/
 ├── CLAUDE.md                         # Development guidelines for Claude Code
 ├── AGENTS.md                         # Agent instructions (local start commands)
 ├── README.md                         # Project overview and quick start
