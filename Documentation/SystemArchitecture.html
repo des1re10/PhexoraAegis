@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Technische Architektur der statischen Quantum-Forschungswebsite.">
-  <title>Quantum – Systemarchitektur</title>
+  <meta name="description" content="Technische Architektur der statischen Phexora Aegis-Forschungswebsite.">
+  <title>Phexora Aegis – Systemarchitektur</title>
   <link rel="stylesheet" href="assets/documentation.css">
 </head>
 <body>
@@ -25,7 +25,7 @@
 
     <main class="doc-content">
       <header class="hero">
-        <p class="kicker">Quantum-Dokumentation</p>
+        <p class="kicker">Phexora Aegis-Dokumentation</p>
         <h1>Systemarchitektur</h1>
         <p>Maßgebliche Beschreibung der statischen Forschungswebsite, ihrer Build-Abhängigkeiten und ihrer Deployment-Grenzen.</p>
         <div class="badge-row">
@@ -37,7 +37,7 @@
 
       <section class="doc-section" id="ueberblick">
         <h2>Überblick</h2>
-        <p><strong>Stand: 23. Juli 2026.</strong> Quantum ist derzeit ausschließlich ein Repository für eine statische Website und Forschungsdokumente. Es enthält keine Blockchain-Node-Implementierung.</p>
+        <p><strong>Stand: 23. Juli 2026.</strong> Phexora Aegis ist derzeit ausschließlich ein Repository für eine statische Website und Forschungsdokumente. Es enthält keine Blockchain-Node-Implementierung.</p>
         <pre><code>Markdown-Quellen ── DocWizard/Pandoc ──► PDF-Artefakte
         │                                  │
         └──────────────┬───────────────────┘
@@ -100,17 +100,17 @@ index.html + LICENSE + assets/ + papers/ ── Nginx ──► Browser</code></
   ▼
 pCloud-Quelle
   │
-  ├─ tools/Scripts/Startup/quantum_deploy_script.sh
+  ├─ tools/Scripts/Startup/phexora_aegis_deploy_script.sh
   ▼
 Server-Arbeitskopie
   │
   ├─ index.html + LICENSE + assets/ + papers/
   ▼
-/var/www/quantum[-test] ── registrierte Quelle/TEST
+/var/www/phexora-aegis[-test] ── registrierte Quelle/TEST
   │
-  └─ MAIN: SiteBuilder publication-domains/quantum.phexora.ai ── Nginx/HTTPS</code></pre>
-        <p>Das Server-Deployment kopiert ausschließlich <code>index.html</code>, <code>LICENSE</code>, <code>assets/</code> und <code>papers/</code> in den repository-eigenen Web-Root. Quantum verwendet genau den vom AppManager beziehungsweise Zentral-Orchestrator übergebenen Bundle-Stand aus <code>Libraries/Scripts</code> als Deployment-Werkzeug, ist laut Anwendungsregistrierung jedoch kein Shared-Libraries-Consumer; deshalb wird weder eine Libraries-Nutzlast verlangt noch in das Quantum-Ziel kopiert. Fehlende sudo-Berechtigung, fehlende Startup-Werkzeuge oder vom App-Stand abweichende Web-Root-Inhalte brechen das Deployment ab. Die rechtlichen Links bleiben bei ihren zentral gepflegten Phexora-Seiten. <code>Documentation/</code>, Quellrichtlinien und Build-Skripte bleiben in der Server-Arbeitskopie und sind nicht Teil der öffentlichen Website.</p>
-        <p><code>run_quantum.sh</code> verwendet die gemeinsame statische Nginx-Infrastruktur für HTTPS und Wartungsseite. MAIN wird über den stabilen, von SiteBuilder beim Veröffentlichen atomar umgeschalteten Domain-Alias ausgeliefert; TEST verbleibt unter <code>/var/www/quantum-test</code>. Der Start bricht ab, wenn der Alias fehlt oder die Domain nicht exakt dessen <code>index.html</code> ausliefert.</p>
+  └─ MAIN: SiteBuilder publication-domains/aegis.phexora.ai ── Nginx/HTTPS</code></pre>
+        <p>Das Server-Deployment kopiert ausschließlich <code>index.html</code>, <code>LICENSE</code>, <code>assets/</code> und <code>papers/</code> in den repository-eigenen Web-Root. Phexora Aegis verwendet genau den vom AppManager beziehungsweise Zentral-Orchestrator übergebenen Bundle-Stand aus <code>Libraries/Scripts</code> als Deployment-Werkzeug, ist laut Anwendungsregistrierung jedoch kein Shared-Libraries-Consumer; deshalb wird weder eine Libraries-Nutzlast verlangt noch in das Phexora Aegis-Ziel kopiert. Fehlende sudo-Berechtigung, fehlende Startup-Werkzeuge oder vom App-Stand abweichende Web-Root-Inhalte brechen das Deployment ab. Die rechtlichen Links bleiben bei ihren zentral gepflegten Phexora-Seiten. <code>Documentation/</code>, Quellrichtlinien und Build-Skripte bleiben in der Server-Arbeitskopie und sind nicht Teil der öffentlichen Website.</p>
+        <p><code>run_phexora_aegis.sh</code> verwendet die gemeinsame statische Nginx-Infrastruktur für HTTPS und Wartungsseite. MAIN wird über den stabilen, von SiteBuilder beim Veröffentlichen atomar umgeschalteten Domain-Alias ausgeliefert; TEST verbleibt unter <code>/var/www/phexora-aegis-test</code>. Der Start bricht ab, wenn der Alias fehlt oder die Domain nicht exakt dessen <code>index.html</code> ausliefert.</p>
       </section>
 
       <section class="doc-section" id="umgebungen">
@@ -119,8 +119,8 @@ Server-Arbeitskopie
           <table>
             <thead><tr><th>Umgebung</th><th>Adresse</th><th>Statusgrenze</th></tr></thead>
             <tbody>
-              <tr><td>Produktion</td><td><a href="https://quantum.phexora.ai">quantum.phexora.ai</a></td><td>Am 9. Juli 2026 erreichbar; Betriebszustand ist zeitabhängig.</td></tr>
-              <tr><td>Test</td><td><code>test.quantum.phexora.ai</code></td><td>In Skripten vorgesehen; am 9. Juli 2026 nicht per DNS auflösbar. Nicht als verfügbare Umgebung zusichern.</td></tr>
+              <tr><td>Produktion</td><td><a href="https://aegis.phexora.ai">aegis.phexora.ai</a></td><td>Am 9. Juli 2026 erreichbar; Betriebszustand ist zeitabhängig.</td></tr>
+              <tr><td>Test</td><td><code>test.aegis.phexora.ai</code></td><td>In Skripten vorgesehen; am 9. Juli 2026 nicht per DNS auflösbar. Nicht als verfügbare Umgebung zusichern.</td></tr>
               <tr><td>Lokal</td><td><code>http://127.0.0.1:9180</code></td><td>Nur während eines lokal gebundenen Vorschau-Servers erreichbar.</td></tr>
             </tbody>
           </table>
@@ -135,10 +135,10 @@ Server-Arbeitskopie
             <tbody>
               <tr><td>Landingpage-Design</td><td><code>assets/css/style.css</code></td><td>Laufzeit</td></tr>
               <tr><td>DE/EN-UI, Sprachstatus und lokalisierte Metadaten</td><td><code>assets/js/site-i18n.js</code></td><td>Laufzeit im Browser</td></tr>
-              <tr><td>Unternehmens-Footer und Rechts-URLs</td><td><code>Libraries/frontend/components/Company/Footer.jsx</code> und <code>Libraries/frontend/components/Company/companyLinks.js</code>; statische Projektion in <code>index.html</code></td><td>Gemeinsamer UI-Vertrag ohne React-Laufzeit in Quantum</td></tr>
+              <tr><td>Unternehmens-Footer und Rechts-URLs</td><td><code>Libraries/frontend/components/Company/Footer.jsx</code> und <code>Libraries/frontend/components/Company/companyLinks.js</code>; statische Projektion in <code>index.html</code></td><td>Gemeinsamer UI-Vertrag ohne React-Laufzeit in Phexora Aegis</td></tr>
               <tr><td>Interne Dokumentgestaltung</td><td><code>Documentation/assets/documentation.css</code></td><td>lokale Dokumentansicht</td></tr>
               <tr><td>PDF-Konvertierung</td><td><code>DocWizard-Pro</code></td><td>Build</td></tr>
-              <tr><td>Deployment-Orchestrierung</td><td><code>Libraries/Scripts</code> als Helfer über Quantum-Skripte; keine Libraries-Nutzlast</td><td>Deployment</td></tr>
+              <tr><td>Deployment-Orchestrierung</td><td><code>Libraries/Scripts</code> als Helfer über Phexora Aegis-Skripte; keine Libraries-Nutzlast</td><td>Deployment</td></tr>
               <tr><td>Port, Domain und App-Metadaten</td><td><code>Libraries/Python/ApplicationRegistry.py</code></td><td>Infrastruktur</td></tr>
             </tbody>
           </table>
