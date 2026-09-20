@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Quantum - Local Development Server
+# Phexora Aegis - Local Development Server
 # Quick start script for testing the website locally
 #
 
@@ -22,9 +22,9 @@ from ApplicationRegistry import get_application
 
 config = get_application("quantum")
 if config is None:
-    raise RuntimeError("Quantum is missing from ApplicationRegistry")
+    raise RuntimeError("Phexora Aegis is missing from ApplicationRegistry")
 if config.local_preview_port is None:
-    raise RuntimeError("Quantum local_preview_port is not configured")
+    raise RuntimeError("Phexora Aegis local_preview_port is not configured")
 print(config.local_preview_port)
 PY
 )"
@@ -38,7 +38,7 @@ fi
 cd "$SCRIPT_DIR"
 
 echo "================================================"
-echo "  Quantum - Post-Quantum Cryptography Research"
+echo "  Phexora Aegis - Post-Quantum Cryptography Research"
 echo "  Local Development Server"
 echo "================================================"
 echo ""
