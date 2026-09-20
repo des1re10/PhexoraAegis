@@ -2,31 +2,31 @@
   "protected_paths": [
     {
       "pattern": ".quality/code_rules.json",
-      "message": "Quantum research requirement review-policy changes require explicit review."
+      "message": "Phexora Aegis research requirement review-policy changes require explicit review."
     },
     {
       "pattern": "README.md",
-      "message": "Quantum release-boundary and research-status changes require explicit claim and traceability review."
+      "message": "Phexora Aegis release-boundary and research-status changes require explicit claim and traceability review."
     },
     {
       "pattern": "papers/zkprivacy/zkprivacy-quantum-spec-v1.md",
-      "message": "Quantum normative protocol requirement changes require explicit cryptographic, systems, and traceability review."
+      "message": "Phexora Aegis normative protocol requirement changes require explicit cryptographic, systems, and traceability review."
     },
     {
       "pattern": "papers/zkprivacy/zkprivacy-verification-guide.md",
-      "message": "Quantum verification and release-evidence contract changes require explicit review."
+      "message": "Phexora Aegis verification and release-evidence contract changes require explicit review."
     },
     {
       "pattern": "papers/zkprivacy/decisions/*.md",
-      "message": "Quantum research decision-boundary changes require explicit review."
+      "message": "Phexora Aegis research decision-boundary changes require explicit review."
     },
     {
       "pattern": ".github/workflows/quality.yml",
-      "message": "Quantum server-side quality-gate changes require explicit CI review."
+      "message": "Phexora Aegis server-side quality-gate changes require explicit CI review."
     },
     {
       "pattern": ".github/pull_request_template.md",
-      "message": "Quantum requirements review-evidence template changes require explicit review."
+      "message": "Phexora Aegis requirements review-evidence template changes require explicit review."
     }
   ]
 }
