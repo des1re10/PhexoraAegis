@@ -145,9 +145,10 @@ fi
 
 # Check sudo availability
 source "$LOCAL_DEPLOY_SCRIPTS_DIR/static_deployment_access.sh" || exit 1
-initialize_static_deployment_access "$WEB_ROOT" "$DOMAIN" || exit 1
+initialize_static_deployment_access "$WEB_ROOT" "$DOMAIN" "$DEPLOY_TARGET" || exit 1
 if [ "$STATIC_PUBLISH_WITHOUT_ROOT" = "1" ]; then
     echo "Publishing into the operator-prepared static directory without root."
+    verify_static_site_web_root_exactly "$WEB_ROOT" "$DOMAIN" "$STATIC_SITE_CERTIFICATE_VALID" || exit 1
 elif [ "$AUTO_DEPLOY" == "1" ]; then
     if ! require_noninteractive_sudo_access; then
         echo "ERROR: Static auto-deployment cannot publish without sudo access"
@@ -361,7 +362,8 @@ chmod +x "$STARTUP_SCRIPT"
 sed -i 's/\r$//' "$STARTUP_SCRIPT" 2>/dev/null || true
 
 if [ "$STATIC_PUBLISH_WITHOUT_ROOT" = "1" ]; then
-    echo "The existing HTTPS host was verified; nginx setup is already complete."
+    verify_static_site_web_root_exactly "$WEB_ROOT" "$DOMAIN" "$STATIC_SITE_CERTIFICATE_VALID" || exit 1
+    echo "The active publication was verified exactly: $WEB_ROOT"
 elif [ "$AUTO_DEPLOY" == "1" ]; then
     AUTO_DEPLOY=1 DEPLOY_TARGET="$DEPLOY_TARGET" HAS_PASSWORDLESS_SUDO=1 "$STARTUP_SCRIPT"
 else
