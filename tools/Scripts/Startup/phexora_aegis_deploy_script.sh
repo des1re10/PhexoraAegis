@@ -144,7 +144,11 @@ if [ ! -d "$SOURCE_BASE" ]; then
 fi
 
 # Check sudo availability
-if [ "$AUTO_DEPLOY" == "1" ]; then
+source "$LOCAL_DEPLOY_SCRIPTS_DIR/static_deployment_access.sh" || exit 1
+initialize_static_deployment_access "$WEB_ROOT" "$DOMAIN" || exit 1
+if [ "$STATIC_PUBLISH_WITHOUT_ROOT" = "1" ]; then
+    echo "Publishing into the operator-prepared static directory without root."
+elif [ "$AUTO_DEPLOY" == "1" ]; then
     if ! require_noninteractive_sudo_access; then
         echo "ERROR: Static auto-deployment cannot publish without sudo access"
         exit 1
@@ -239,7 +243,7 @@ echo ""
 # === Create directories if needed ===
 echo "[1/5] Setting up directories..."
 mkdir -p "$TARGET_DIR" 2>/dev/null || true
-sudo mkdir -p "$WEB_ROOT"
+static_publish_command mkdir -p "$WEB_ROOT"
 echo "  Directories ready (including web root)"
 
 # === Deploy Phexora Aegis using shared script ===
@@ -284,16 +288,16 @@ cp -r "$TARGET_DIR/assets" "$TEMP_DIR/"
 cp -r "$TARGET_DIR/papers" "$TEMP_DIR/"
 
 # Remove existing files/directories to allow clean replacement
-sudo rm -f "$WEB_ROOT/index.html"
-sudo rm -f "$WEB_ROOT/LICENSE"
-sudo rm -rf "$WEB_ROOT/assets"
-sudo rm -rf "$WEB_ROOT/papers"
+static_publish_command rm -f "$WEB_ROOT/index.html"
+static_publish_command rm -f "$WEB_ROOT/LICENSE"
+static_publish_command rm -rf "$WEB_ROOT/assets"
+static_publish_command rm -rf "$WEB_ROOT/papers"
 
 # Move from temp to web root with sudo
-sudo mv "$TEMP_DIR/index.html" "$WEB_ROOT/"
-sudo mv "$TEMP_DIR/LICENSE" "$WEB_ROOT/"
-sudo mv "$TEMP_DIR/assets" "$WEB_ROOT/"
-sudo mv "$TEMP_DIR/papers" "$WEB_ROOT/"
+static_publish_command mv "$TEMP_DIR/index.html" "$WEB_ROOT/"
+static_publish_command mv "$TEMP_DIR/LICENSE" "$WEB_ROOT/"
+static_publish_command mv "$TEMP_DIR/assets" "$WEB_ROOT/"
+static_publish_command mv "$TEMP_DIR/papers" "$WEB_ROOT/"
 rmdir "$TEMP_DIR"
 
 verify_published_path "$TARGET_DIR/index.html" "$WEB_ROOT/index.html"
@@ -325,10 +329,10 @@ fi
 
 # === Set permissions ===
 echo "[3/5] Setting permissions..."
-sudo chown -R www-data:www-data "$WEB_ROOT"
-sudo chmod -R 755 "$WEB_ROOT"
-sudo chmod 644 "$WEB_ROOT/index.html"
-sudo chmod 644 "$WEB_ROOT/LICENSE"
+static_publish_command chown -R www-data:www-data "$WEB_ROOT"
+static_publish_command chmod -R 755 "$WEB_ROOT"
+static_publish_command chmod 644 "$WEB_ROOT/index.html"
+static_publish_command chmod 644 "$WEB_ROOT/LICENSE"
 echo "  Web root permissions set"
 
 # Set permissions on home directory files
@@ -356,7 +360,9 @@ fi
 chmod +x "$STARTUP_SCRIPT"
 sed -i 's/\r$//' "$STARTUP_SCRIPT" 2>/dev/null || true
 
-if [ "$AUTO_DEPLOY" == "1" ]; then
+if [ "$STATIC_PUBLISH_WITHOUT_ROOT" = "1" ]; then
+    echo "The existing HTTPS host was verified; nginx setup is already complete."
+elif [ "$AUTO_DEPLOY" == "1" ]; then
     AUTO_DEPLOY=1 DEPLOY_TARGET="$DEPLOY_TARGET" HAS_PASSWORDLESS_SUDO=1 "$STARTUP_SCRIPT"
 else
     "$STARTUP_SCRIPT"
