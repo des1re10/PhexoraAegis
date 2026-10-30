@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "exploratory",
+  "accepted_tps": 1000,
+  "outputs_per_transaction": 2,
+  "transport_multiplier": 1,
+  "offline_days": 1,
+  "node_receive_mbps": 10,
+  "wallet_catchup_budget_gb": 50,
+  "catchup_deadline_hours": 24
+}

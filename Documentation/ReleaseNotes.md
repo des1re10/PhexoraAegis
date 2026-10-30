@@ -334,3 +334,10 @@ constructions and claims.
 - Hardened Windows preview startup, normalized launcher line endings, and
   aligned deployment wrappers with the shared publication contract.
 - Release packaging update: annotated repository tag advanced to `v1.3.1`.
+
+### Unreleased
+
+- Added an analytic receive/catch-up screen that can reject a declared
+  full-scan profile before costly implementation. Its exploratory inputs and
+  ciphertext-only lower bound cannot establish protocol feasibility or security.
+- Kept the active research papers, evidence gates and public website unchanged.

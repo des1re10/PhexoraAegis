@@ -16,6 +16,7 @@ PhexoraAegis/
 │   ├── SystemArchitecture.html       # System design and deployment
 │   ├── InvestorOnePager.html         # Evidence-based research brief
 │   ├── Phexora_Aegis_Market_Thesis.html    # Market and claim thesis
+│   ├── ResearchEvaluation/          # Internal analytic receive-floor screen
 │   ├── assets/
 │   │   └── documentation.css         # Shared internal-document styles
 │   └── ReleaseNotes.md               # Version history
@@ -47,11 +48,15 @@ PhexoraAegis/
 │       └── favicon.svg               # Site favicon
 │
 ├── tools/
+│   ├── feasibility_screen.py         # Analytic rejection screen; never gate approval
 │   └── Scripts/
 │       ├── Startup/                  # Deployment and startup scripts
 │       │   ├── phexora_aegis_deploy_script.sh  # Deploy from pCloud to server
 │       │   └── run_phexora_aegis.sh            # Nginx/SSL configuration
 │       └── deploy_testing.bat        # Windows deployment to pCloud
+│
+├── tests/
+│   └── test_feasibility_screen.py     # Receive/catch-up accounting and invalid inputs
 │
 ├── build-pdfs.sh                     # PDF generation (Linux)
 ├── build-pdfs.bat                    # PDF generation (Windows)
@@ -62,6 +67,11 @@ PhexoraAegis/
 ```
 
 ## PDF build contract
+
+The [receive-floor supplement](ResearchEvaluation/README.md) retains its config
+and source-bound analytic output under `Documentation/ResearchEvaluation/`.
+It is an internal exploratory screen, not an active paper, implemented wallet
+or approved T006/T305 result. Active-paper sources and PDFs are unchanged.
 
 - Root-level Markdown files in `papers/zkprivacy/` are the authoritative active
   publication sources; same-name PDFs are generated artifacts.
